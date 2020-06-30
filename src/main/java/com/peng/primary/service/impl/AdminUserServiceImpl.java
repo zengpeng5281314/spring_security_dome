@@ -17,7 +17,6 @@ import com.peng.primary.dao.AdminUserRoleInfoDAO;
 import com.peng.primary.entity.TAdminUser;
 import com.peng.primary.service.AdminUserService;
 import com.peng.util.DtoCopyEntity;
-import com.peng.util.saltUtils;
 
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
@@ -60,9 +59,9 @@ public class AdminUserServiceImpl implements AdminUserService {
 			// 新增
 			DtoCopyEntity.populate(adminUserDTO, adminUser);
 			adminUser.setCreateTime(new Timestamp(System.currentTimeMillis()));
-			String salt = saltUtils.getRandom32Salt();
-			adminUser.setSalt(salt);
-			adminUser.setPassword(saltUtils.getPwdBysalt(adminUser.getPassword(), adminUser.getCredentialsSalt(), 3));
+//			String salt = saltUtils.getRandom32Salt();
+//			adminUser.setSalt(salt);
+//			adminUser.setPassword(saltUtils.getPwdBysalt(adminUser.getPassword(), adminUser.getCredentialsSalt(), 3));
 		} else {
 			// 修改
 			adminUser = findByUserId(adminUserDTO.getUserId());

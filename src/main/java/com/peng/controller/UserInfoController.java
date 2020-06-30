@@ -1,24 +1,18 @@
 package com.peng.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.peng.dto.AdminUserRequestDTO;
 import com.peng.dto.AdminUserResponseDTO;
@@ -29,14 +23,8 @@ import com.peng.primary.service.AdminRoleService;
 import com.peng.primary.service.AdminUserRoleService;
 import com.peng.primary.service.AdminUserService;
 import com.peng.util.DtoCopyEntity;
-import com.peng.util.JsonDateValueProcessor;
 
 import io.swagger.annotations.Api;
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
 
 @Api(tags = "用户页面")
 @Controller
@@ -60,7 +48,6 @@ public class UserInfoController {
 	}
 
 	@RequestMapping(value = "/adminUserList", method = { RequestMethod.GET })
-	@RequiresPermissions("user:view") // 权限管理;
 	public String adminUserList(@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
 			@RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
